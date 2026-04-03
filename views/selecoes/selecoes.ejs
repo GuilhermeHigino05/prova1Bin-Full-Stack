@@ -1,0 +1,29 @@
+
+
+<div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Sigla</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <% selecoes.forEach(() => { %>
+                <td><%= selecoes.sel_id %></td>
+                <td><%= selecoes.sel_nome %></td>
+                <td><%= selecoes.sel_sigla %></td>
+                <td>
+                    <a href="/alterarSelecao/ <%= selecoes.sel_id %>" id="btn-Alterar">Alterar</a>
+                    <button data-id="<%= selecoes.sel_id %>" id="btn-Excluir">Excluir</button>
+                </td>
+                <% }) %>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

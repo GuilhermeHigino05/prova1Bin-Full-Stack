@@ -1,0 +1,32 @@
+
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Numero</th>
+                <th>Posicao</th>
+                <th>Selecao</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% jogadores.forEach(() => {  %>
+                <tr>
+                    <td><%= jogadores.jog_id %></td>
+                    <td><%= jogadores.jog_nome %></td>
+                    <td><%= jogadores.jog_numero %></td>
+                    <td><%= jogadores.pos_nome %></td>
+                    <td><%= jogadores.sel_nome %></td>
+                    <td>
+                        <a href="/alterarJogadores/<%= jogadores.jog_id %>">Alterar Jogador</a>
+                        <button data-id="<%= jogadores.jog_id %>" id="btn-excluit">Excluir Jogador</button>
+                    </td>
+                </tr>
+            <% }); %>
+        
+        </tbody>
+    </table>
+</div>

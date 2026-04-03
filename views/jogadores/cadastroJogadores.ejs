@@ -1,0 +1,22 @@
+
+
+<div>
+    <h1>Cadastro de Jogadores </h1>
+    <form>
+        <label for="name">Nome:</label>
+        <input type="text" name="name" id="nome" required>
+        <label for="numero">Numero: </label>
+        <input type="number" name="numero" id="numero" required>
+        <select name="posicao" id="posicao">
+            <% posicoes.forEach((posicao) => { %>
+                <option value="<%= posicao.pos_nome  %>"><%= posicao.pos_nome  %></option>
+            <% }) %>
+        </select>
+        <label for="selecao">Seleção:</label>
+        <input type="text" name="selecao" id="selecao">
+
+        <button id="btn-cadastro">Cadastrar Jogador</button>
+    </form>
+</div>
+
+<script src="../js/jogadores/cadastro.js"></script>
