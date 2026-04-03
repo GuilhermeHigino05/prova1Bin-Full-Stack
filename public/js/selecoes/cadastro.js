@@ -1,4 +1,4 @@
-const { response } = require("express");
+
 
 document.addEventListener('DOMContentLoaded', () => {
     let btn = document.getElementById('btn-Cadastro');

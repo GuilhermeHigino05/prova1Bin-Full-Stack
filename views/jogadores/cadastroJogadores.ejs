@@ -7,9 +7,10 @@
         <input type="text" name="name" id="nome" required>
         <label for="numero">Numero: </label>
         <input type="number" name="numero" id="numero" required>
+        <label for="posicao">Posição: </label>
         <select name="posicao" id="posicao">
             <% posicoes.forEach((posicao) => { %>
-                <option value="<%= posicao.pos_nome  %>"><%= posicao.pos_nome  %></option>
+                <option value="<%= posicao.pos_nome %>"><%= posicao.pos_nome  %></option>
             <% }) %>
         </select>
         <label for="selecao">Seleção:</label>

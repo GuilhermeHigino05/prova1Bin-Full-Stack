@@ -19,7 +19,7 @@ class SelecaoModel {
     async listar(){
         const sql = `select * from tb_selecao`
         let banco = new Database()
-        const rows = await banco.ExecutaComando('sql');
+        const rows = await banco.ExecutaComando(sql);
         let selecoes = []
         if(rows.length > 0){
             rows.forEach((values) => {
@@ -34,7 +34,16 @@ class SelecaoModel {
     }
     
     async cadastro(){
-
+        const sql = `insert into tb_selecao (sel_id,sel_nome, sel_sigla)
+        values (?,?,?)`;
+        const values = [
+            this.#id,
+            this.#nome,
+            this.#sigla
+        ]
+        let banco = new Database();
+        let result = await banco.ExecutaComandoNonQuery(sql, values)
+        return result;
     }
 }
 

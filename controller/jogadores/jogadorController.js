@@ -1,11 +1,12 @@
-const JogadorModel = require("../model/jogadorModel");
+const JogadorModel = require("../../model/jogadores/jogadorModel");
+
 
 
 class jogadorController{
     
 
     async listar(req,res){
-        let lista = new JogadorModel()
+        let lista = new JogadorModel
         let jogador = await lista.listar();
         res.render('jogadores/jogadores', { jogadores: jogador })
     }
