@@ -13,19 +13,19 @@
             </tr>
         </thead>
         <tbody>
-            <% jogadores.forEach(() => {  %>
+            <% for(let i = 0; i<jogadores.length;i++) {  %>
                 <tr>
-                    <td><%= jogadores.id %></td>
-                    <td><%= jogadores.nome %></td>
-                    <td><%= jogadores.numero %></td>
-                    <td><%= jogadores.pos_nome %></td>
-                    <td><%= jogadores.sel_nome %></td>
+                    <td><%= jogadores[i].id %></td>
+                    <td><%= jogadores[i].nome %></td>
+                    <td><%= jogadores[i].numero %></td>
+                    <td><%= jogadores[i].posicao %></td>
+                    <td><%= jogadores[i].selecao %></td>
                     <td>
-                        <a href="/alterarJogadores/<%= jogadores.jog_id %>">Alterar Jogador</a>
-                        <button data-id="<%= jogadores.jog_id %>" id="btn-excluit">Excluir Jogador</button>
+                        <a href="/alterarJogadores/<%= jogadores[i].id %>">Alterar Jogador</a>
+                        <button data-id="<%= jogadores[i].id %>" id="btn-excluir">Excluir Jogador</button>
                     </td>
                 </tr>
-            <% }); %>
+            <% } %>
         
         </tbody>
     </table>
