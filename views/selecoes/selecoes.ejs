@@ -12,18 +12,22 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <% selecoes.forEach(() => { %>
-                <td><%= selecoes.sel_id %></td>
-                <td><%= selecoes.sel_nome %></td>
-                <td><%= selecoes.sel_sigla %></td>
-                <td>
-                    <a href="/alterarSelecao/ <%= selecoes.sel_id %>" id="btn-Alterar">Alterar</a>
-                    <button data-id="<%= selecoes.sel_id %>" id="btn-Excluir">Excluir</button>
-                </td>
-                <% }) %>
-            </tr>
-        </tbody>
+                <% for (let i = 0; i < selecoes.length; i++) { %>
+                    <tr>
+                        <td><%= selecoes[i].id %></td>
+                        <td><%= selecoes[i].nome %></td>
+                        <td><%= selecoes[i].sigla %></td>
+                        <td>
+                            <a href="/selecoes/alterar/<%= selecoes[i].sel_id %>" ">
+                                Alterar Selecao
+                            </a>
+                            <button data-id="<%= selecoes[i].sel_id %>">
+                                Excluir
+                            </button>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
     </table>
 
 

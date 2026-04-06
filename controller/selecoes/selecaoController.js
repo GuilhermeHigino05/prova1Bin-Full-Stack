@@ -17,25 +17,26 @@ class SelecaoController{
     async cadastro(req,res){
         let ok = false;
         let msg = '';
-        try{
-            if(req.body.nome != '' &&
+        if(req.body.nome != '' &&
             req.body.sigla != ''
             ){
-                let sel = new SelecaoModel(0, req.body.nome, req.body.sigla);
-                let result = await sel.cadastro();
-                if(result){ 
-                    ok = true;
-                    msg = 'Selecao cadastrada com sucesso';
-                }else{
-                    msg = 'Erro ao cadastrar selecao'
+            try{
+                    let sel = new SelecaoModel(0, req.body.nome, req.body.sigla);
+                    let result = await sel.cadastro();
+                    if(result){ 
+                        ok = true;
+                        msg = 'Selecao cadastrada com sucesso';
+                    }else{
+                        msg = 'Erro ao cadastrar selecao'
+                    }
+                }catch(error){
+                    console.log(error);
+                    res.status(500).json({ok: false, msg: 'Erro interno no servidor'})
                 }
-            } else{
+            }else{
                 msg = 'Informações incorretas'
             }
-            res.json({ok: ok, msg: msg})
-        }catch(error){
-            res.json(error)
-        }
+        res.json({ok, msg})
     }
 }
 

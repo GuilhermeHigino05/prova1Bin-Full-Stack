@@ -9,9 +9,11 @@
         <input type="number" name="numero" id="numero" required>
         <label for="posicao">Posição: </label>
         <select name="posicao" id="posicao">
-            <% posicoes.forEach((posicao) => { %>
-                <option value="<%= posicao.pos_nome %>"><%= posicao.pos_nome  %></option>
-            <% }) %>
+            <% for (let i = 0; i < posicoes.length; i++) { %>
+                <option value="<%= posicoes[i].pos_nome %>">
+                    <%= posicoes[i].pos_nome %>
+                </option>
+            <% } %>
         </select>
         <label for="selecao">Seleção:</label>
         <input type="text" name="selecao" id="selecao">

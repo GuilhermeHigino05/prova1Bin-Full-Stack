@@ -1,5 +1,5 @@
 const Database = require('../../utils/database')
-const JogadorModel = require('../jogadores/jogadorModel')
+
 
 class SelecaoModel {
     #id

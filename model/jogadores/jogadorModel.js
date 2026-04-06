@@ -46,12 +46,12 @@ class JogadorModel {
     }
 
     async listarPosicoes(){
-        let sql = `Select * from tb_posicao`
+        let sql = `select pos_nome from tb_posicao`
         let banco = new Database();
         let rows = await banco.ExecutaComando(sql);
         let posicoes = [];
         rows.forEach((values) => {
-            posicoes.push(values.pos_nome);
+            posicoes.push(values);
         })
         return posicoes;
     }
@@ -96,7 +96,7 @@ class JogadorModel {
         if(selId){
             if(posId){
                 if(num){
-                    let values = [this.#id, this.#nome, num, posId, selId,];
+                    let values = [this.#id, this.#nome, this.#numero, posId, selId,];
                     let result = await banco.ExecutaComandoNonQuery(sql,values);
                     return result;
                 }else{

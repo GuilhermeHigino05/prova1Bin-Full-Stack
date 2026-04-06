@@ -21,17 +21,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if(listaValid.length == 0){
             fetch('/selecoes/cadastro', {
                 method: 'POST',
-                headers: 'Content-Type' = 'application/json',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify({
                     nome: nome.value,
-                    sigla: nome.value
+                    sigla: sigla.value
                 })
             }).then((response) => {
                 return response.json()
             }).then((data) => {
                 if(data.ok){
                     console.log(data.msg)
-                    alert(msg)
+                    alert(data.msg)
                 } else{
                     console.error(data.msg)
                     alert(data.msg);

@@ -13,8 +13,8 @@ class jogadorController{
 
     async cadastroView(req,res){
         let lista = new JogadorModel()
-        let posicao = await lista.listarPosicoes();
-        res.render('jogadores/cadastroJogadores', { posicoes: posicao })
+        let posicoes = await lista.listarPosicoes();
+        res.render('jogadores/cadastroJogadores', { posicoes })
     }
 
     async cadastro(req, res){
