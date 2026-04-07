@@ -21,8 +21,8 @@
                     <td><%= jogadores[i].posicao %></td>
                     <td><%= jogadores[i].selecao %></td>
                     <td>
-                        <a href="/alterarJogadores/<%= jogadores[i].id %>">Alterar Jogador</a>
-                        <button data-id="<%= jogadores[i].id %>" id="btn-excluir">Excluir Jogador</button>
+                        <a href="/jogadores/alterar/<%= jogadores[i].id %>">Alterar Jogador</a>
+                        <button data-id="<%= jogadores[i].id %>" class="btn-excluir">Excluir Jogador</button>
                     </td>
                 </tr>
             <% } %>
@@ -32,3 +32,5 @@
 
     <a href="jogadores/cadastro">Cadastrar novos Jogadores</a>
 </div>
+
+<script src="../js/jogadores/excluir.js"></script>

@@ -1,0 +1,29 @@
+
+
+<div>
+    <h1>Alterar de Jogadores </h1>
+    <form>
+        <label for="name" >Nome:</label>
+        <input type="text" value="<%= jogadores.jog_nome %>" name="name" id="nome" required>
+        <label for="numero">Numero: </label>
+        <input type="number"  value="<%= jogadores.jog_numero %>" name="numero" id="numero" required>
+        <label for="posicao" >Posição: </label>
+        <select name="posicao" id="posicao">
+            <% for (let i = 0; i < posicoes.length; i++) { %>
+                <% if(jogadores.posicao == posicoes[i].pos_nome) { %>
+                    <option value="<%= posicoes[i].pos_nome %>" selected>
+                        <%= posicoes[i].pos_nome %>
+                    </option>
+                <% }else{ %>
+                    <option value="<%= posicoes[i].pos_nome %>">
+                        <%= posicoes[i].pos_nome %>
+                    </option>
+                <% } %>
+            <% } %>
+        </select>
+        <label for="selecao" >Seleção:</label>
+        <input type="text" value="<%= jogadores.selecao %>" name="selecao" id="selecao">
+
+        <button id="btn-alterar">Alterar Jogador</button>
+    </form>
+</div>

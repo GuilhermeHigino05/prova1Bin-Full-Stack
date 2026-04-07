@@ -109,6 +109,61 @@ class JogadorModel {
             return 'ErrSel'
         }
     }
+
+    async excluir(id){
+        let sql = `delete from tb_jogador where jog_id = ?`
+        let values = [id];
+        let banco = new Database();
+        let result = await banco.ExecutaComandoNonQuery(sql, values);
+        return result;
+    }
+
+    async obter(id){
+        let sql  = `select j.jog_id, j.jog_nome, j.jog_numero, p.pos_nome, s.sel_nome
+                    from tb_jogador j
+                    inner join tb_selecao s on s.sel_id = j.sel_id
+                    inner join tb_posicao p on p.pos_id = j.pos_id
+                    where j.jog_id = ?
+                    order by j.jog_id`;
+        let banco =  new Database()
+        const jogid = id
+        let rows = await banco.ExecutaComando(sql,jogid);
+        let jogadores = [];
+        if(rows.length > 0){
+            rows.forEach((values) => {
+                jogadores.push(new JogadorModel(
+                    values.jog_id,
+                    values.jog_nome, 
+                    values.jog_numero, 
+                    values.pos_nome, 
+                    values.sel_nome));
+            });
+        }
+        return jogadores;
+    }
+
+    async alterar(){
+        let sql = `update tb_jogador set jog_nome = ?, jog_numero = ?, pos_id = ?, sel_id = ?`;
+        let selId = await this.obterIdSel(this.#selecao);
+        let posId = await this.obterIdPos(this.#posicao);
+        let banco = new Database()
+        let num = this.obterNum(this.#numero);
+        if(selId){
+            if(posId){
+                if(num){
+                    let values = [ this.#nome, this.#numero, posId, selId,];
+                    let result = await banco.ExecutaComandoNonQuery(sql,values);
+                    return result;
+                }else{
+                    return 'ErrNum'
+                }
+            }else{
+                return 'ErrPos'
+            }
+        }else{
+            return 'ErrSel'
+        }
+    }
 }
 
 module.exports = JogadorModel;

@@ -25,19 +25,88 @@ class jogadorController{
             req.body.posicao != '' &&
             req.body.selecao != '' 
         ){
-            let jogador = new JogadorModel(0,
+            const jogador = new JogadorModel(0,
                 req.body.nome,
                 req.body.numero, 
                 req.body.posicao, 
                 req.body.selecao 
             )
-            let result = await jogador.cadastrar()
+            const result = await jogador.cadastrar()
             try{
                 if(result != 'ErrSel'){
                     if(result != 'ErrPos'){
                         if(result != 'ErrNum'){
                             ok = true;
                             msg = 'Jogador cadastrado com sucesso'
+                        }else{
+                            msg = 'Numero já existente'
+                        }
+                    }else{
+                        msg = 'Posição não cadastrada'
+                    }
+                }else{
+                    msg = 'Selecao nao cadastrada'
+                }
+                            
+            }catch(error){
+                console.log(error);
+                res.status(500).json({ok: false, msg: 'Erro interno no servidor'})
+            }
+        }
+        else{
+            ok = false
+            msg = 'Digite corretamente as informações';
+        }
+        res.json({ ok, msg })
+    }
+    async deletar(req,res){
+        let ok = false
+        let msg = '' 
+        const jogador = new JogadorModel();
+        if(req.body.id && req.body.id != 0){
+            let result = await jogador.excluir(req.body.id);
+            if(result){
+                ok = true;
+                msg = 'Jogador deletado'
+            }else{
+                ok = false;
+                msg = 'falha ao deletar usuario '
+            }
+        }else{
+            msg = 'id invalido';
+        }
+        res.json({ok, msg});
+    }
+
+    async alterarView(req,res){
+        const view = new JogadorModel();
+        const id = req.params.id
+        let jogadores = await view.obter(id);
+        let posicoes = await view.listarPosicoes();
+        res.render('jogadores/alteraJogadores', {jogadores, posicoes});
+    }
+
+    async alterar(req,res){
+        let ok = false
+        let msg = ''
+        if(req.body.nome != '' && 
+            req.body.numero != '' &&
+            req.body.posicao != '' &&
+            req.body.selecao != '' 
+        ){
+            const jogador = new JogadorModel(0,
+                req.body.nome,
+                req.body.numero, 
+                req.body.posicao, 
+                req.body.selecao 
+            )
+            const result = await jogador.alterar()
+            try{
+                if(result != 'ErrSel'){
+                    if(result != 'ErrPos'){
+                        if(result != 'ErrNum'){
+                            ok = true;
+                            msg = 'Jogador alterado com sucesso'
                         }else{
                             msg = 'Numero já existente'
                         }
