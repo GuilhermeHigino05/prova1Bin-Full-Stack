@@ -83,7 +83,7 @@ class jogadorController{
         const id = req.params.id
         let jogadores = await view.obter(id);
         let posicoes = await view.listarPosicoes();
-        res.render('jogadores/alteraJogadores', {jogadores, posicoes});
+        res.render('jogadores/alteraJogadores', {jogadores: jogadores[0], posicoes});
     }
 
     async alterar(req,res){
