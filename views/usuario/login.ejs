@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form action="/usuario/login" method="POST" id="formLogin">
+        <div>
+            <label for="email">E-mail</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <div>
+            <label for="senha">Senha</label>
+            <input type="password" name="senha" id="senha" required>
+        </div>
+        <button type="button" onclick="fazerLogin()">Entrar</button>
+    </form>
+
+    <script>
+        async function fazerLogin() {
+            const form = document.getElementById('formLogin');
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            
+            const req = await fetch('/usuario/login', {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+            const response = await req.json();
+
+            if (response.ok) {
+                alert(response.msg);
+                window.location.href = "/";
+            } else {
+                alert(response.msg);
+            }
+        }
+    </script>
+</body>
+</html>
